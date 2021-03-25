@@ -1,4 +1,4 @@
-# A simple python backend API using FastAPI and SQLite database.
+# A simple python backend API using FastAPI and SQLite.
 
 This project was created using [FastAPI Web Framework](https://github.com/tiangolo/fastapi).
 ## Install dependencies
