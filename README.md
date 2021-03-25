@@ -15,4 +15,4 @@ Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 Open [http://localhost:8000/docs](http://localhost:8000/docs) to view it in the browser, a fully interactive Swagger styled documentation of the API.
 
 For an alternative type of documentation. 
-Open [http://localhost:8000/docs](http://localhost:8000/redoc) for a ReDoc styled documentation.
+Open [http://localhost:8000/redoc](http://localhost:8000/redoc) for a ReDoc styled documentation.
