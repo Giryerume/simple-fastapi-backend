@@ -6,6 +6,12 @@ cpf_validator = CPF()
 pis_validator = PIS()
 
 
+def validate_password(password: str, confirm: str) -> bool:
+    if password == confirm:
+        return True
+    return False
+
+
 def validate_email(email: str, format_only: bool = True) -> bool:
     if not email_verify_format(email):
         return False

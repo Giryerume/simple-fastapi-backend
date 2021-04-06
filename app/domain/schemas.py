@@ -16,6 +16,18 @@ class User(UserBase):
         orm_mode = True
 
 
+class CreateUser(BaseModel):
+    username: str
+    email: str
+    cpf: str
+    pis: str
+    password: str
+    confirm: str
+
+    class Config():
+        orm_mode = True
+
+
 class BlogBase(BaseModel):
     title: str
     body: str

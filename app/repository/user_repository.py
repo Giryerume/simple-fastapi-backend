@@ -5,7 +5,7 @@ from ..domain import schemas, models, validation
 from ..security import hashing
 
 
-def create(db: Session, request: schemas.User):
+def create(db: Session, request: schemas.CreateUser):
     new_user = models.User(username=request.username,
                            email=request.email,
                            cpf=request.cpf,
@@ -13,15 +13,18 @@ def create(db: Session, request: schemas.User):
                            password=hashing.encrypt(request.password))
 
     verify_user(db, request)
+    if not validation.validate_password(request.password, request.confirm):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                            detail=f"Senha de confirmação e senha não batem! ")
     if not validation.validate_email(request.email):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"<{request.email}> não é um email válido")
+                            detail=f"<{request.email}> não é um email válido!")
     if not validation.validate_cpf(request.cpf):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"\"{request.cpf}\" não é um CPF válido")
+                            detail=f"\"{request.cpf}\" não é um CPF válido!")
     if not validation.validate_pis(request.pis):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail=f"\"{request.pis}\" não é um PIS válido")
+                            detail=f"\"{request.pis}\" não é um PIS válido!")
 
     db.add(new_user)
     db.commit()
